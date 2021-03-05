@@ -4,6 +4,7 @@
 #include "Agent.h"
 #include "SeekBehavior.h"
 #include "FleeBehavior.h"
+#include "WanderBehavior.h"
 
 bool Game::m_gameOver = false;
 Scene** Game::m_scenes = new Scene*;
@@ -37,6 +38,7 @@ void Game::start()
 	//Create a new steering behavior and adds it to the enemy
 	SeekBehavior* seek = new SeekBehavior(player);
 	FleeBehavior* flee = new FleeBehavior(player);
+	WanderBehavior* wander = new WanderBehavior(player);
 	
 	enemy->addBehavior(flee);
 
