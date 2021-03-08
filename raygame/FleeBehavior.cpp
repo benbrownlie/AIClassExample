@@ -4,13 +4,13 @@
 FleeBehavior::FleeBehavior()
 {
 	m_target = nullptr;
-	m_fleeForce = 1;
+	setForceScale(1);
 }
 
 FleeBehavior::FleeBehavior(Actor* target, float fleeForce)
 {
 	m_target = target;
-	m_fleeForce = fleeForce;
+	setForceScale(fleeForce);
 }
 
 MathLibrary::Vector2 FleeBehavior::calculateForce(Agent* agent)
@@ -18,7 +18,7 @@ MathLibrary::Vector2 FleeBehavior::calculateForce(Agent* agent)
 	//Find the direction to move in
 	MathLibrary::Vector2 direction = MathLibrary::Vector2::normalize(agent->getWorldPosition() - m_target->getWorldPosition());
 	//Scale the direction vector by the seekForce
-	MathLibrary::Vector2 desiredVelocity = direction * m_fleeForce;
+	MathLibrary::Vector2 desiredVelocity = direction * getForceScale();
 	//Subtract current velocity from desired velocity to find steering force
 	MathLibrary::Vector2 steeringForce = desiredVelocity - agent->getVelocity();
 

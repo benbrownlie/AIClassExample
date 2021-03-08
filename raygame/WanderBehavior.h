@@ -10,10 +10,9 @@ public:
 	MathLibrary::Vector2 calculateForce(Agent* agent) override;
 
 	void update(Agent* agent, float deltatime) override;
+	void draw(Agent* agent) override;
 private:
 	Actor* m_target;
 	float m_wanderAngle;
-	float m_wanderForce;
-	
 };
 
