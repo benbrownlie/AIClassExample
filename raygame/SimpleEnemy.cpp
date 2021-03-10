@@ -1,6 +1,7 @@
 #include "SimpleEnemy.h"
 #include "SeekBehavior.h"
 #include "WanderBehavior.h"
+#include "Player.h"
 
 bool SimpleEnemy::checkTargetInSight()
 {
@@ -27,14 +28,23 @@ bool SimpleEnemy::checkTargetInSight()
 
 void SimpleEnemy::onCollision(Actor* other)
 {
+	Player* player = dynamic_cast<Player*>(other);
+	
 	//Check to see if the enemy ran into the player
-	Enemy::checkCollision(other);
+	if (checkCollision(player))
+	{
+		//If the enemy has run into the player, deal damage to the player
+		if ()
+		{
+			player->takeDamage(getDamage());
+		}
 
-	//If the enemy has run into the player, deal damage to the player
-
-
-	//If the player health is less than 0, set the target to be nullptr
-
+		//If the player health is less than 0, set the target to be nullptr
+		if (player->getHealth() <= 0)
+		{
+			setTarget(nullptr);
+		}
+	}
 }
 
 void SimpleEnemy::start()
@@ -63,6 +73,29 @@ void SimpleEnemy::update(float deltaTime)
 	//The switch should transition to the seek state if the target is in sight.
 	//You can set the seek force to be whatever value you see fit, but be sure to
 	//set the wander force to be 0
+
+	int state = WANDER;
+
+	if (checkTargetInSight() == true)
+	{
+		state = SEEK;
+	}
+
+	else
+	{
+		state = WANDER;
+	}
+
+	switch (state)
+	{
+	case WANDER:
+		addBehavior(m_wander);
+		break;
+
+	case SEEK:
+		addBehavior(m_seek);
+		break;
+	}
 
 	Enemy::update(deltaTime);
 }
