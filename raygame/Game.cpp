@@ -5,6 +5,11 @@
 #include "SeekBehavior.h"
 #include "FleeBehavior.h"
 #include "WanderBehavior.h"
+#include "PursueBehavior.h"
+#include "EvadeBehavior.h"
+#include "DecisionBehavior.h"
+#include "PursueDecision.h"
+#include "ComplexEnemy.h"
 
 bool Game::m_gameOver = false;
 Scene** Game::m_scenes = new Scene*;
@@ -34,20 +39,28 @@ void Game::start()
 	m_camera->zoom = 1;
 
 	//Initializes agents
-	Player* player = new Player(10, 10, 5, "Images/player.png", 1, 10);
-	Agent* enemy = new Agent(11, 11, 1, "Images/enemy.png", 10, 10);
+	Player* player = new Player(1, 1, 5, "Images/player.png", 1, 10);
+	Agent* enemy = new Agent(5, 5, 1, "Images/enemy.png", 10, 20);
+	ComplexEnemy* complexEnemy = new ComplexEnemy(20, 20, 1, "images/enemy.png", player);
+	PursueDecision* pursueDecision = new PursueDecision();
+	DecisionBehavior* decisionBehavior = new DecisionBehavior(pursueDecision);
+
+	complexEnemy->addBehavior(decisionBehavior);
 
 	//Create a new steering behavior and adds it to the enemy
-	SeekBehavior* seek = new SeekBehavior(player);
+	SeekBehavior* seek = new SeekBehavior(player, 5);
 	FleeBehavior* flee = new FleeBehavior(player);
-	WanderBehavior* wander = new WanderBehavior(player);
+	PursueBehavior* pursue = new PursueBehavior(player, 5);
+	EvadeBehavior* evade = new EvadeBehavior(player);
+
+	//WanderBehavior* wander = new WanderBehavior(player);
 	
-	enemy->addBehavior(flee);
+	enemy->addBehavior(evade);
 
 	//Initializes the scene
 	Scene* scene = new Scene();
 	scene->addActor(player);
-	scene->addActor(enemy);
+	scene->addActor(complexEnemy);
 	addScene(scene);
 	SetTargetFPS(60);
 }

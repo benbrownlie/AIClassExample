@@ -26,6 +26,9 @@ MathLibrary::Vector2 WanderBehavior::calculateForce(Agent* agent)
 
 	//Add the product of direction and circleRadius to the circle's center position
 	circleCenter = circleCenter + ranDirection;
+
+	MathLibrary::Vector2 tempvalue;
+	return tempvalue;
 }
 
 //MathLibrary::Vector2 WanderBehavior::setAngle(MathLibrary::Vector2 pos, int value)

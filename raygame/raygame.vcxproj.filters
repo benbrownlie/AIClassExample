@@ -15,6 +15,15 @@
     <Filter Include="AI">
       <UniqueIdentifier>{cfe6fdd0-b99b-4cea-ad16-9672ab42f335}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AI\Decisions">
+      <UniqueIdentifier>{8b620c09-47ee-4d0b-90db-50c1066a97da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI\Behaviors">
+      <UniqueIdentifier>{3555dc1a-fc60-4267-8b19-6996d6bf05bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI\Agents">
+      <UniqueIdentifier>{4657a194-7f48-40a1-9fc8-5d6dbd945334}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -38,26 +47,47 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SeekBehavior.cpp">
-      <Filter>AI</Filter>
-    </ClCompile>
-    <ClCompile Include="Agent.cpp">
-      <Filter>AI</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>AI</Filter>
-    </ClCompile>
-    <ClCompile Include="FleeBehavior.cpp">
-      <Filter>AI</Filter>
-    </ClCompile>
-    <ClCompile Include="WanderBehavior.cpp">
-      <Filter>AI</Filter>
-    </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ABdecision.cpp">
+      <Filter>AI\Decisions</Filter>
+    </ClCompile>
+    <ClCompile Include="DecisionBehavior.cpp">
+      <Filter>AI\Decisions</Filter>
+    </ClCompile>
+    <ClCompile Include="EvadeDecision.cpp">
+      <Filter>AI\Decisions</Filter>
+    </ClCompile>
+    <ClCompile Include="PursueDecision.cpp">
+      <Filter>AI\Decisions</Filter>
+    </ClCompile>
+    <ClCompile Include="EvadeBehavior.cpp">
+      <Filter>AI\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="FleeBehavior.cpp">
+      <Filter>AI\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="PursueBehavior.cpp">
+      <Filter>AI\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="SeekBehavior.cpp">
+      <Filter>AI\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="WanderBehavior.cpp">
+      <Filter>AI\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="Agent.cpp">
+      <Filter>AI\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="ComplexEnemy.cpp">
+      <Filter>AI\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>AI\Agents</Filter>
+    </ClCompile>
     <ClCompile Include="SimpleEnemy.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>AI\Agents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,32 +109,56 @@
     <ClInclude Include="Bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Behavior.h">
-      <Filter>AI</Filter>
-    </ClInclude>
-    <ClInclude Include="SeekBehavior.h">
-      <Filter>AI</Filter>
-    </ClInclude>
-    <ClInclude Include="SteeringBehavior.h">
-      <Filter>AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Agent.h">
-      <Filter>AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>AI</Filter>
-    </ClInclude>
-    <ClInclude Include="FleeBehavior.h">
-      <Filter>AI</Filter>
-    </ClInclude>
-    <ClInclude Include="WanderBehavior.h">
-      <Filter>AI</Filter>
-    </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ABdecision.h">
+      <Filter>AI\Decisions</Filter>
+    </ClInclude>
+    <ClInclude Include="Decision.h">
+      <Filter>AI\Decisions</Filter>
+    </ClInclude>
+    <ClInclude Include="DecisionBehavior.h">
+      <Filter>AI\Decisions</Filter>
+    </ClInclude>
+    <ClInclude Include="EvadeDecision.h">
+      <Filter>AI\Decisions</Filter>
+    </ClInclude>
+    <ClInclude Include="PursueDecision.h">
+      <Filter>AI\Decisions</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior.h">
+      <Filter>AI\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="EvadeBehavior.h">
+      <Filter>AI\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="FleeBehavior.h">
+      <Filter>AI\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="PursueBehavior.h">
+      <Filter>AI\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="SeekBehavior.h">
+      <Filter>AI\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringBehavior.h">
+      <Filter>AI\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="WanderBehavior.h">
+      <Filter>AI\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="Agent.h">
+      <Filter>AI\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="ComplexEnemy.h">
+      <Filter>AI\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>AI\Agents</Filter>
+    </ClInclude>
     <ClInclude Include="SimpleEnemy.h">
-      <Filter>Header Files</Filter>
+      <Filter>AI\Agents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -34,7 +34,7 @@ void SimpleEnemy::onCollision(Actor* other)
 	if (checkCollision(player))
 	{
 		//If the enemy has run into the player, deal damage to the player
-		if ()
+		if (player)
 		{
 			player->takeDamage(getDamage());
 		}
