@@ -17,6 +17,7 @@ void Edge::draw()
 
 void Edge::update(float deltatime)
 {
+	Actor::update(deltatime);
 	//Update the position to match the position of the first connected node
 	setWorldPostion(connectedNode1->getWorldPosition());
 }

@@ -22,3 +22,16 @@ void Node::draw()
 			edges[i]->draw();
 	}
 }
+
+void Node::update(float deltatime)
+{
+	Actor::update(deltatime);
+
+	//Update all edges connected to this node
+	for (int i = 0; i < edges.size(); i++)
+	{
+		//Checks if the node is the first connected node to prevent the edge from drawing twice
+		if (edges[i]->connectedNode1->graphPosition == graphPosition)
+			edges[i]->update(deltatime);
+	}
+}

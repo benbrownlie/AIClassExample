@@ -13,6 +13,7 @@ public:
 	int color = 0xFFFFFFFF;
 	int size = 1;
 	void draw() override;
+	void update(float deltatime) override;
 };
 
  

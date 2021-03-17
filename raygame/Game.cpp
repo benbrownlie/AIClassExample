@@ -10,6 +10,7 @@
 #include "DecisionBehavior.h"
 #include "PursueDecision.h"
 #include "ComplexEnemy.h"
+#include "Graph.h"
 
 bool Game::m_gameOver = false;
 Scene** Game::m_scenes = new Scene*;
@@ -61,7 +62,22 @@ void Game::start()
 	Scene* scene = new Scene();
 	scene->addActor(player);
 	scene->addActor(complexEnemy);
+
+	//STEERING BEHAVIORS SCENE END
+
+	//PATHFINDING SCENE START
+
+	Graph* graph = new Graph(5, 5, 5, 1);
+
+	Scene* pathFinding = new Scene();
+	pathFinding->addActor(graph);
+
+	//PATHFINDING SCENE END
+
+	//Initializes the scene
 	addScene(scene);
+
+	m_currentSceneIndex = addScene(pathFinding);
 	SetTargetFPS(60);
 }
 
