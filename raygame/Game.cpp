@@ -67,10 +67,7 @@ void Game::start()
 
 void Game::update(float deltaTime)
 {
-	for (int i = 0; i < m_sceneCount; i++)
-	{
-		m_scenes[i]->update(deltaTime);
-	}
+	getCurrentScene()->update(deltaTime);
 }
 
 void Game::draw()
@@ -80,10 +77,7 @@ void Game::draw()
 	BeginMode2D(*m_camera);
 	ClearBackground(BLACK);
 
-	for (int i = 0; i < m_sceneCount; i++)
-	{
-		m_scenes[i]->draw();
-	}
+	getCurrentScene()->draw();
 
 	EndMode2D();
 	EndDrawing();
