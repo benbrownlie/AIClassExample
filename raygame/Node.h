@@ -14,6 +14,7 @@ public:
 	int size = 1;
 	void draw() override;
 	void update(float deltatime) override;
+	bool visited;
 };
 
  
