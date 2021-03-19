@@ -12,7 +12,8 @@ public:
 	void update(float deltatime) override;
 
 	void BFS(int startX, int startY, int goalX, int goalY);
-	void dijkstrap(int gScore, int startX, int startY, int goalX, int goalY);
+	void dijkstrap(int startX, int startY, int goalX, int goalY);
+	void aStar();
 	Node* getNode(int xPos, int yPos);
 
 private:

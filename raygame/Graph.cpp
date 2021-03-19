@@ -88,7 +88,7 @@ void Graph::BFS(int startX, int startY, int goalX, int goalY)
 	}
 }
 
-void Graph::dijkstrap(int gScore, int startX, int startY, int goalX, int goalY)
+void Graph::dijkstrap(int startX, int startY, int goalX, int goalY)
 {
 	//Create a node pointer that points to the start node
 	Node* start = getNode(startX, startY);
@@ -117,30 +117,55 @@ void Graph::dijkstrap(int gScore, int startX, int startY, int goalX, int goalY)
 	openList.push_front(start);
 
 	//Loop while the open list is not empty
+	float gScore;
+
 	while (!openList.empty())
 	{
 		//Sort the items in the open list by the g score
-		for (int i = 0; i < gScore)
+		for (int i = 0; i < ; i++)
+		{
+			for (int j = openList.size() - 1; j > i; j--)
+			{
+				if (openList[j] < openList[j - 1])
+				{
+					Node* temp = openList[j];
+					openList[j] = openList[j - 1];
+					openList[j - 1] = temp;
+				}
+			}
+		}
 
 		//Set the iterator to be the first item in the open list
-
+		currentNode = openList[0];
 
 		//Check if the iterator is pointing to the goal node
-
+		if (currentNode == goal)
+		{
 			//Mark the goal as being found by changing its color
+			goal->color = ColorToInt(RED);
 			//Return the new path found
-
+			return;
 		//end if statement
+		}
 
 		//Pop the first item off the open list
+		openList.pop_front();
+
 		//Add the first item to the closed list
+		closedList.push_front(start);
 
 		//Loop through all of the edges for the iterator
-
+		for (int i = 0; i < currentNode->edges.size(); i++)
+		{
 			//Create a node pointer to store the other end of the edge
+			Node* currentEdgeEnd = nullptr;
 
 			//Check if the iterator is on the second end of the node
+			if (currentNode->edges[])
+			{
 				//Set the edge end pointer to be the first end of the node
+				currentEdgeEnd = 
+			}
 			//Otherwise if the iterator is on the first end of the node...
 				//set the edge end pointer to be the second end of the node
 			// end if statement
@@ -165,7 +190,79 @@ void Graph::dijkstrap(int gScore, int startX, int startY, int goalX, int goalY)
 
 				//end if statement
 		//end loop
+		}
 	}//end loop
+}
+
+void Graph::aStar()
+{
+	//Create a node pointer that points to the start node
+	//Create a node pointer that points to the goal node
+
+	//Check if the start or the goal pointer is null
+		//return an empty list
+	//end if statement
+
+	//Set the start nodes color to be green
+
+	//Create a node pointer that will act as an iterator for the graph
+	//Create an open list
+	//Create a closed list
+
+	//Add start to the open list
+
+	//Loop while the open list is not empty
+
+		//Sort the items in the open list by the f score
+
+		//Set the iterator to be the first item in the open list
+
+		//Check if the iterator is pointing to the goal node
+
+			//Mark the goal as being found by changing its color
+			//Return the new path found
+
+		//end if statement
+
+		//Pop the first item off the open list
+		//Add the first item to the closed list
+
+		//Loop through all of the edges for the iterator
+
+			//Create a node pointer to store the other end of the edge
+
+			//Check if the iterator is on the second end of the node
+				//Set the edge end pointer to be the first end of the node
+			//Otherwise if the iterator is on the first end of the node...
+				//set the edge end pointer to be the second end of the node
+			// end if statement
+
+			//Check if node at the end of the edge is in the closed list
+
+				//Create a float and set it to be the g score of the iterator plus the cost of the edge
+				//Create a float and set it to be the h score of the node at the end of the edge
+				//Create a float for the f score and set it to be the g score combined with the h score
+
+				//Check if the node at the end of the edge is in the open list
+
+					//Mark the node as visited by changing its color
+					//Set the nodes g score to be the g score calculated earlier
+					//Set the nodes h score to be the h score calculated earlier
+					//Set the nodes f score to be the f score calculated earlier
+					//Set the nodes previous to be the iterator
+					//Add the node to the open list
+
+				//Otherwise if the f score is less than the node at the end of the edge's f score...
+
+					//Mark the node as visited by changing its color
+					//Set its g score to be the g score calculated earlier
+					//Set the nodes h score to be the h score calculated earlier
+					//Set its f score to be the f score calculated earlier
+					//Set its previous to be the current node
+
+				//end if statement
+		//end loop
+	//end loop
 }
 
 Node* Graph::getNode(int xPos, int yPos)
