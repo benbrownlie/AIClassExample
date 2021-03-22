@@ -105,7 +105,7 @@ void Graph::dijkstrap(int startX, int startY, int goalX, int goalY)
 	start->color = ColorToInt(GREEN);
 
 	//Create a node pointer that will be act as an iterator for the graph
-	Node* currentNode = start;
+	Node* currentNode = nullptr;
 
 	//Create an open list
 	std::deque<Node*> openList;
@@ -161,16 +161,21 @@ void Graph::dijkstrap(int startX, int startY, int goalX, int goalY)
 			Node* currentEdgeEnd = nullptr;
 
 			//Check if the iterator is on the second end of the node
-			if (currentNode->edges[])
+			if (currentNode == currentNode->edges[i]->connectedNode2)
 			{
 				//Set the edge end pointer to be the first end of the node
-				currentEdgeEnd = 
+				currentEdgeEnd = currentNode->edges[i]->connectedNode1;
 			}
 			//Otherwise if the iterator is on the first end of the node...
+			else
+			{
 				//set the edge end pointer to be the second end of the node
+				currentEdgeEnd = currentNode->edges[i]->connectedNode2;
 			// end if statement
+			}
 
 			//Check if node at the end of the edge is in the closed list
+			if ()
 
 				//Create an int and set it to be the g score of the iterator plus the cost of the edge
 
@@ -197,6 +202,7 @@ void Graph::dijkstrap(int startX, int startY, int goalX, int goalY)
 void Graph::aStar()
 {
 	//Create a node pointer that points to the start node
+
 	//Create a node pointer that points to the goal node
 
 	//Check if the start or the goal pointer is null
