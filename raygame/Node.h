@@ -15,6 +15,8 @@ public:
 	void draw() override;
 	void update(float deltatime) override;
 	bool visited;
+	float gScore;
+	float hScore;
 };
 
  

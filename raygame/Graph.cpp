@@ -117,12 +117,11 @@ void Graph::dijkstrap(int startX, int startY, int goalX, int goalY)
 	openList.push_front(start);
 
 	//Loop while the open list is not empty
-	float gScore;
 
 	while (!openList.empty())
 	{
 		//Sort the items in the open list by the g score
-		for (int i = 0; i < ; i++)
+		for (int i = 0; i < openList.size(); i++)
 		{
 			for (int j = openList.size() - 1; j > i; j--)
 			{
