@@ -69,7 +69,7 @@ void Game::start()
 
 	Graph* graph = new Graph(20, 20, 10, 1);
 	graph->setWorldPostion({ 5,1 });
-	graph->dijkstrap(0, 0, 10, 0);
+	graph->dijkstrap(0, 0, 3, 3);
 	Scene* pathFinding = new Scene();
 	pathFinding->addActor(graph);
 

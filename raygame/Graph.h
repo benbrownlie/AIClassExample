@@ -13,7 +13,7 @@ public:
 	bool isInList(std::deque<Node*> list, Node* node);
 
 	void BFS(int startX, int startY, int goalX, int goalY);
-	void dijkstrap(int startX, int startY, int goalX, int goalY);
+	std::vector<Node*> dijkstrap(int startX, int startY, int goalX, int goalY);
 	void aStar();
 	Node* getNode(int xPos, int yPos);
 

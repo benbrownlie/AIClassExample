@@ -97,7 +97,7 @@ void Graph::BFS(int startX, int startY, int goalX, int goalY)
 	}
 }
 
-void Graph::dijkstrap(int startX, int startY, int goalX, int goalY)
+std::vector<Node*> Graph::dijkstrap(int startX, int startY, int goalX, int goalY)
 {
 	float gScore = 0;
 	//Create a node pointer that points to the start node
@@ -108,7 +108,7 @@ void Graph::dijkstrap(int startX, int startY, int goalX, int goalY)
 	//Check if the start or the goal pointer is null
 	if (!start || !goal)
 	{//return an empty list
-		return;
+		return std::vector<Node*>();
 	}//end if statement
 
 	//Set the start nodes color to be green
@@ -127,7 +127,6 @@ void Graph::dijkstrap(int startX, int startY, int goalX, int goalY)
 	openList.push_front(start);
 
 	//Loop while the open list is not empty
-
 	while (!openList.empty())
 	{
 		//Sort the items in the open list by the g score
@@ -197,7 +196,7 @@ void Graph::dijkstrap(int startX, int startY, int goalX, int goalY)
 					currentEdgeEnd->visited = true;
 					currentEdgeEnd->color = ColorToInt(YELLOW);
 					//Set the nodes g score to be the g score calculated earlier
-					gScore = tempGScore;
+					currentNode->m_gScore = tempGScore;
 					//Set the nodes previous to be the iterator
 					currentNode->edges[i]->connectedNode2 = currentNode;
 					//Add the node to the open list
