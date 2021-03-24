@@ -14,6 +14,8 @@ public:
 	int size = 1;
 	void draw() override;
 	void update(float deltatime) override;
+	float getGScore() { return gScore; }
+	float getHScore() { return hScore; }
 	bool visited;
 	float gScore;
 	float hScore;

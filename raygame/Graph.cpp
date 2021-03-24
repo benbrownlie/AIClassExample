@@ -123,12 +123,12 @@ void Graph::dijkstrap(int startX, int startY, int goalX, int goalY)
 		//Sort the items in the open list by the g score
 		for (int i = 0; i < openList.size(); i++)
 		{
-			for (int j = openList.size() - 1; j > i; j--)
+			for (int j = openList.size(); j > i; j--)
 			{
-				if (openList[j] < openList[j - 1])
+				if (openList[i]->getGScore() > openList[j - 1]->getGScore())
 				{
-					Node* temp = openList[j];
-					openList[j] = openList[j - 1];
+					Node* temp = openList[i];
+					openList[i] = openList[j - 1];
 					openList[j - 1] = temp;
 				}
 			}
