@@ -2,7 +2,6 @@
 #include "Node.h"
 #include "Edge.h"
 #include <raylib.h>
-#include <deque>
 
 Graph::Graph(int width, int height, int nodeSize, int nodeSpacing)
 {
@@ -24,6 +23,16 @@ void Graph::update(float deltatime)
 
 	for (int i = 0; i < m_nodes.size(); i++)
 		m_nodes[i]->update(deltatime);
+}
+
+bool Graph::isInList(std::deque<Node*> list, Node* node)
+{
+	for (int i = 0; i < list.size(); i++)
+	{
+		if (list[i] == node)
+			return true;
+	}
+	return false;
 }
 
 void Graph::BFS(int startX, int startY, int goalX, int goalY)
@@ -175,14 +184,14 @@ void Graph::dijkstrap(int startX, int startY, int goalX, int goalY)
 			}
 
 			//Check if node at the end of the edge is in the closed list
-			if (currentEdgeEnd == currentNode)
+			if (!isInList(closedList, currentEdgeEnd))
 			{
 
 				//Create an int and set it to be the g score of the iterator plus the cost of the edge
 				int tempGScore = currentNode->m_gScore + currentNode->edges[i]->cost;
 
 				//Check if the node at the end of the edge is in the open list
-				if (currentEdgeEnd)
+				if (!isInList(closedList, currentEdgeEnd))
 				{
 					//Mark the node as visited by changing its color
 					currentEdgeEnd->visited = true;
