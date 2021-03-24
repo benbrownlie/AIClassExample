@@ -60,8 +60,8 @@ void Game::start()
 
 	//Initializes the scene
 	Scene* scene = new Scene();
-	scene->addActor(player);
-	scene->addActor(complexEnemy);
+	//scene->addActor(player);
+	//scene->addActor(complexEnemy);
 
 	//STEERING BEHAVIORS SCENE END
 
@@ -69,7 +69,7 @@ void Game::start()
 
 	Graph* graph = new Graph(50, 50, 15, 1);
 	graph->setWorldPostion({ 0,0 });
-	graph->BFS(0, 0, 49, 49);
+	graph->dijkstrap(0, 0, 30, 0);
 	Scene* pathFinding = new Scene();
 	pathFinding->addActor(graph);
 

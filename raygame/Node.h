@@ -14,11 +14,12 @@ public:
 	int size = 1;
 	void draw() override;
 	void update(float deltatime) override;
-	float getGScore() { return gScore; }
-	float getHScore() { return hScore; }
+	float getGScore() { return m_gScore; }
+	float getHScore() { return m_hScore; }
 	bool visited;
-	float gScore;
-	float hScore;
+	float m_gScore = 0;
+	float m_hScore = 0;
+	float m_fScore = 0;
 };
 
  
