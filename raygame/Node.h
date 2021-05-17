@@ -14,12 +14,15 @@ public:
 	int size = 1;
 	void draw() override;
 	void update(float deltatime) override;
-	float getGScore() { return m_gScore; }
+	float getGScore() { return gScore; }
 	float getHScore() { return m_hScore; }
 	bool visited;
-	float m_gScore = 0;
+	float gScore = 0;
 	float m_hScore = 0;
 	float m_fScore = 0;
+	Node* previous;
+	std::vector<Edge> connections;
+	Node* target;
 };
 
  

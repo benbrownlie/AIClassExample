@@ -13,10 +13,10 @@ public:
 	bool isInList(std::deque<Node*> list, Node* node);
 
 	void BFS(int startX, int startY, int goalX, int goalY);
-	std::vector<Node*> dijkstrap(int startX, int startY, int goalX, int goalY);
+	std::deque<Node*> findPath(Node* start, Node* end);
 	void aStar();
 	Node* getNode(int xPos, int yPos);
-
+	float gScore;
 private:
 	void createGraph(int nodeSize, int nodeSpacing);
 

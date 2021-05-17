@@ -97,22 +97,15 @@ void Graph::BFS(int startX, int startY, int goalX, int goalY)
 	}
 }
 
-std::vector<Node*> Graph::dijkstrap(int startX, int startY, int goalX, int goalY)
+std::deque<NodeGraph::Node*> NodeGraph::findPath(Node* start, Node* end)
 {
+	std::deque<Node*> path;
 	float gScore = 0;
-	//Create a node pointer that points to the start node
-	Node* start = getNode(startX, startY);
-	//Create a node pointer that points to the goal node
-	Node* goal = getNode(goalX, goalY);
-
 	//Check if the start or the goal pointer is null
-	if (!start || !goal)
+	if (!start || !end)
 	{//return an empty list
-		return std::vector<Node*>();
+		return std::deque<Node*>();
 	}//end if statement
-
-	//Set the start nodes color to be green
-	start->color = ColorToInt(GREEN);
 
 	//Create a node pointer that will be act as an iterator for the graph
 	Node* currentNode = start;
@@ -134,7 +127,7 @@ std::vector<Node*> Graph::dijkstrap(int startX, int startY, int goalX, int goalY
 		{
 			for (int j = openList.size(); j > i; j--)
 			{
-				if (openList[i]->m_gScore > openList[j - 1]->m_gScore)
+				if (openList[i]->gScore > openList[j - 1]->gScore)
 				{
 					Node* temp = openList[i];
 					openList[i] = openList[j - 1];
@@ -147,13 +140,12 @@ std::vector<Node*> Graph::dijkstrap(int startX, int startY, int goalX, int goalY
 		currentNode = openList.front();
 
 		//Check if the iterator is pointing to the goal node
-		if (currentNode == goal)
+		if (currentNode == end)
 		{
-			//Mark the goal as being found by changing its color
-			currentNode->color = ColorToInt(RED);
 			//Return the new path found
-			return;
-		//end if statement
+
+			return closedList;
+			//end if statement
 		}
 
 		//Pop the first item off the open list
@@ -163,60 +155,40 @@ std::vector<Node*> Graph::dijkstrap(int startX, int startY, int goalX, int goalY
 		closedList.push_back(currentNode);
 
 		//Loop through all of the edges for the iterator
-		for (int i = 0; i < currentNode->edges.size(); i++)
+		for (int i = 0; i < currentNode->connections.size(); i++)
 		{
 			//Create a node pointer to store the other end of the edge
-			Node* currentEdgeEnd = nullptr;
-
-			//Check if the iterator is on the second end of the node
-			if (currentNode == currentNode->edges[i]->connectedNode2)
-			{
-				//Set the edge end pointer to be the first end of the node
-				currentEdgeEnd = currentNode->edges[i]->connectedNode1;
-			}
-			//Otherwise if the iterator is on the first end of the node...
-			else
-			{
-				//set the edge end pointer to be the second end of the node
-				currentEdgeEnd = currentNode->edges[i]->connectedNode2;
-			// end if statement
-			}
+			Node* currentEdgeEnd = currentNode->connections[i].target;
 
 			//Check if node at the end of the edge is in the closed list
 			if (!isInList(closedList, currentEdgeEnd))
 			{
 
 				//Create an int and set it to be the g score of the iterator plus the cost of the edge
-				int tempGScore = currentNode->m_gScore + currentNode->edges[i]->cost;
+				int tempGScore = currentNode->gScore + currentNode->connections[i].cost;
 
 				//Check if the node at the end of the edge is in the open list
 				if (!isInList(closedList, currentEdgeEnd))
 				{
-					//Mark the node as visited by changing its color
-					currentEdgeEnd->visited = true;
-					currentEdgeEnd->color = ColorToInt(YELLOW);
 					//Set the nodes g score to be the g score calculated earlier
-					currentNode->m_gScore = tempGScore;
+					currentEdgeEnd->gScore = tempGScore;
 					//Set the nodes previous to be the iterator
-					currentNode->edges[i]->connectedNode2 = currentNode;
+					currentEdgeEnd->previous = currentNode;
 					//Add the node to the open list
-					openList.push_back(currentNode);
+					openList.push_back(currentEdgeEnd);
 				}
 				//Otherwise if the g score is less than the node at the end of the edge's g score...
-				else if (gScore < currentEdgeEnd->m_gScore)
+				else if (currentNode->gScore < currentEdgeEnd->gScore)
 				{
-					//Mark the node as visited by changing its color
-					currentEdgeEnd->visited = true;
-					currentEdgeEnd->color = ColorToInt(YELLOW);
 					//Set its g score to be the g score calculated earlier
-					currentNode->m_gScore = tempGScore;
+					currentEdgeEnd->gScore = tempGScore;
 					//Set its previous to be the current node
-					currentNode->edges[i]->connectedNode2 = currentNode;
+					currentEdgeEnd->previous = currentNode;
 				}
 
 				//end if statement
 			}
-		//end loop
+			//end loop
 		}
 	}//end loop
 }
